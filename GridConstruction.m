@@ -29,7 +29,7 @@ classdef GridConstruction
 		end
 
 		function gridpos = create_positive_asset_grid(vmax, curv, npts, varargin)
-			gridpos = GridConstruction.create_curved_grid(0, vmax, curv, npts, varargin{:});
+			gridpos = EconTools.GridConstruction.create_curved_grid(0, vmax, curv, npts, varargin{:});
 		end
 
 		function gridneg = create_negative_asset_grid(vmin, curv, npts, varargin)
@@ -38,10 +38,10 @@ classdef GridConstruction
 			mid_neg = vmin / 2;
 
 			% part of grid close to borrowing limit
-			gridneg1 = GridConstruction.create_curved_grid(vmin, mid_neg, curv, npts_neg1, varargin{:});
+			gridneg1 = EconTools.GridConstruction.create_curved_grid(vmin, mid_neg, curv, npts_neg1, varargin{:});
 
 			% part of grid close to zero
-			gridneg2 = GridConstruction.create_curved_grid(mid_neg, 0, curv, npts_neg2, varargin{:}, 'flip', true);
+			gridneg2 = EconTools.GridConstruction.create_curved_grid(mid_neg, 0, curv, npts_neg2, varargin{:}, 'flip', true);
 		   	gridneg2(1) = []; % remove midpoint
 		    gridneg2(end) = []; % remove 0
 

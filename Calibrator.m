@@ -97,6 +97,7 @@ classdef Calibrator < handle
 			results = obj.main_handle(current_params);
 
 			fprintf('  -- function evaluation %d --\n    evaluated at: ', obj.iter)
+			v = zeros(obj.n, 1);
 			for i_var = 1:obj.n
 				v(i_var) = obj.get_results_value(results, obj.target_names{i_var});
 				fprintf('%s = %g', obj.variables{i_var}, x(i_var))
