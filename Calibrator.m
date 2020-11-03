@@ -74,7 +74,8 @@ classdef Calibrator < handle
 						x0(ii) = (5*obj.lbounds(ii) + obj.ubounds(ii))/6;
 					elseif x0(ii) > obj.ubounds(ii)
 						x0(ii) = (obj.lbounds(ii) + 5*obj.ubounds(ii))/6;
-					end
+                    end
+                    obj.x0{ix0} = x0;
 				end
 			end
 		end
@@ -105,7 +106,7 @@ classdef Calibrator < handle
 					fprintf(", ")
 				end
 			end
-			dv = v - obj.target_values;
+			dv = v(:) - obj.target_values(:);
 
 			fprintf('\n    target variables: ')
 			for i_var = 1:obj.n
@@ -133,7 +134,7 @@ classdef Calibrator < handle
 
 		function solver_args = get_args(obj)
 			x0 = obj.get_next_x0();
-			if ~isempty(obj.ubounds) && ~isempty(x0);
+			if ~isempty(obj.ubounds) && ~isempty(x0)
 				solver_args = {x0, obj.lbounds, obj.ubounds};
 			elseif ~isempty(x0)
 				solver_args = {x0};
