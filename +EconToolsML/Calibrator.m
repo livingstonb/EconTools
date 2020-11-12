@@ -13,6 +13,7 @@ classdef Calibrator < handle
 		n;
 		x0;
 		iter = 1;
+		dnorm = 1e5;
 
 		ix_curr = 1;
 
@@ -125,6 +126,7 @@ classdef Calibrator < handle
 				end
 			end
 			fprintf('\n    norm: %f\n', norm(dv))
+			obj.dnorm = norm(dv);
 
 			dv = obj.adjust_dv(results, current_params, dv);
 
