@@ -7,6 +7,7 @@ classdef Calibrator < handle
 		variables;
 		target_names;
 		target_values;
+		target_result;
 		lbounds = [];
 		ubounds = [];
 		fscale = [];
@@ -116,6 +117,7 @@ classdef Calibrator < handle
 				end
 			end
 			dv = v(:) - obj.target_values(:);
+			obj.target_result = v(:);
 			obj.dnorm = norm(dv);
 			dv = dv .* obj.fscale;
 
