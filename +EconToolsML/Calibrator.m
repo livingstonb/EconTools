@@ -116,6 +116,7 @@ classdef Calibrator < handle
 				end
 			end
 			dv = v(:) - obj.target_values(:);
+			obj.dnorm = norm(dv);
 			dv = dv .* obj.fscale;
 
 			fprintf('\n    target variables: ')
@@ -126,7 +127,6 @@ classdef Calibrator < handle
 				end
 			end
 			fprintf('\n    norm: %f\n', norm(dv))
-			obj.dnorm = norm(dv);
 
 			dv = obj.adjust_dv(results, current_params, dv);
 
